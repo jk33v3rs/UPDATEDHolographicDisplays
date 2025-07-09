@@ -7,12 +7,11 @@
     <artifactId>holographicdisplays-parent</artifactId>
     <name>HolographicDisplays Parent</name>
     <version>3.0.5-SNAPSHOT</version>
-    <packaging>pom</packaging>
-
-    <properties>
+    <packaging>pom</packaging>    <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.release>21</maven.compiler.release>
         <spigot-api.version>1.8-R0.1-SNAPSHOT</spigot-api.version>
     </properties>
 
@@ -211,11 +210,15 @@
                 <groupId>${project.groupId}</groupId>
                 <artifactId>holographicdisplays-nms-v1_20_r2</artifactId>
                 <version>${project.version}</version>
+            </dependency>            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>holographicdisplays-nms-v1_20_r3</artifactId>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>holographicdisplays-nms-v1_20_r3</artifactId>
+                <artifactId>holographicdisplays-nms-v1_21_r1</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -259,11 +262,10 @@
         </dependencies>
     </dependencyManagement>
 
-    <dependencies>
-        <dependency>
+    <dependencies>        <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
-            <version>22.0.0</version>
+            <version>24.0.1</version>
             <scope>provided</scope>
         </dependency>
 
@@ -290,10 +292,19 @@
     </dependencies>
 
     <build>
-        <defaultGoal>clean package</defaultGoal>
-
-        <pluginManagement>
+        <defaultGoal>clean package</defaultGoal>        <pluginManagement>
             <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.11.0</version>
+                    <configuration>
+                        <source>21</source>
+                        <target>21</target>
+                        <release>21</release>
+                    </configuration>
+                </plugin>
+
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
@@ -350,18 +361,14 @@
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>build-helper-maven-plugin</artifactId>
                     <version>3.2.0</version>
-                </plugin>
-
-                <plugin>
+                </plugin>                <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-shade-plugin</artifactId>
-                    <version>3.2.4</version>
-                </plugin>
-
-                <plugin>
+                    <version>3.5.0</version>
+                </plugin>                <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-enforcer-plugin</artifactId>
-                    <version>3.0.0</version>
+                    <version>3.4.1</version>
                 </plugin>
 
                 <plugin>
@@ -374,12 +381,10 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-checkstyle-plugin</artifactId>
                     <version>3.1.2</version>
-                </plugin>
-
-                <plugin>
+                </plugin>                <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.22.2</version>
+                    <version>3.1.2</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -398,9 +403,8 @@
                                 <reactorModuleConvergence />
                                 <requireMavenVersion>
                                     <version>[3.6.0,)</version>
-                                </requireMavenVersion>
-                                <requireJavaVersion>
-                                    <version>[16,)</version>
+                                </requireMavenVersion>                                <requireJavaVersion>
+                                    <version>[21,)</version>
                                 </requireJavaVersion>
                             </rules>
                         </configuration>
